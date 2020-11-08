@@ -1,13 +1,14 @@
 
 import './App.css';
 import PrimarySearchAppBar from './AppBar';
-import MainContent from './MainContent'
+import Match from './Match'
 
 function App() {
   return (
     <div>
       <PrimarySearchAppBar/>
-      <MainContent/>
+      <Match/>
+
     </div>
     
      

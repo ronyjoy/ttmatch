@@ -1,22 +1,14 @@
-import React from 'react';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+
+import React,{useState} from 'react';
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles';
-
 import './css/content.css'
-
-
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
+import Action from './components/Action'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'left',
         flexWrap: 'wrap',
         '& > *': {
             margin: theme.spacing(0.5),
@@ -24,17 +16,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MainContent() {
+function handleChange(event,name) {
+    console.info('You clicked the Chip.'+name);
+}
+
+const actions=['Serve','Back','Top','Dead','Side(L)','Side(R)','Push','Block','Loop','Flick'];
+let player1ActionList=[];
+let player2ActionList=[];
+actions.forEach((action)=>{
+    player1ActionList.push( <Action name = {action} fullName={"player1" +action} onClick={handleChange}/>)
+})
+actions.forEach((action)=>{
+    player2ActionList.push( <Action name = {action} fullName={"player2" +action} onClick={handleChange}/>)
+})
+
+
+
+
+export default function Match() {
     const classes = useStyles();
 
-    const handleDelete = () => {
-        console.info('You clicked the delete icon.');
-    };
-
-    const handleClick = (item) => {
-        console.info('You clicked the Chip.'+item);
-    };
-
+   
     return (
         <div className={classes.root}>
             <div>
@@ -53,10 +55,10 @@ export default function MainContent() {
                 </div>
                 <div class="container">
                     <div class="player1 col col-6">
-                        <Chip size="small" avatar={<Avatar>M</Avatar>} label="Serve" onClick={()=>handleClick('P1Serve')} />
+                        {player1ActionList}
                     </div>
                     <div class="player2 col col-6">
-                        <Chip size="small" avatar={<Avatar>M</Avatar>} label="Serve" onClick={()=>handleClick('p2Serve')} />
+                       {player2ActionList}
                     </div>
                
                 </div>
